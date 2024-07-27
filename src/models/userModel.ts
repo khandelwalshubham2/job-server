@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import { userRole } from "../utils/constants";
 
-/* export interface IUser {
+export interface IUser {
   firstName: string;
   lastName: string;
   email: string;
@@ -14,22 +15,29 @@ import mongoose from "mongoose";
     resumeName: string;
     profilePhoto: string;
   };
-} */
+}
 
 const userSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
       required: true,
+      trim: true,
     },
     lastName: {
       type: String,
       required: true,
+      trim: true,
     },
     email: {
       type: String,
       required: true,
       unique: true,
+      trim: true,
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        "Please fill a valid email address",
+      ],
     },
     password: {
       type: String,
@@ -38,11 +46,10 @@ const userSchema = new mongoose.Schema(
     },
     phoneNumber: {
       type: Number,
-      required: true,
     },
     role: {
       type: String,
-      enum: ["student", "recruiter"],
+      enum: userRole,
       required: true,
     },
     profile: {
