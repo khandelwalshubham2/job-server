@@ -1,0 +1,36 @@
+import mongoose from "mongoose";
+
+export interface ICompany {
+  name: string;
+  description: string;
+  website: string;
+  location: string;
+  logo: string;
+  userId: mongoose.Types.ObjectId;
+}
+
+const companySchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    description: String,
+    website: String,
+    location: {
+      type: String,
+      required: true,
+    },
+    logo: String,
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
+const Company = mongoose.model("Company", companySchema);
+
+export default Company;

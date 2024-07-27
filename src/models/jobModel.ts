@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export interface IJOB {
+/* export interface IJob {
   title: string;
   description: string;
   requirements: string[];
@@ -12,7 +12,7 @@ export interface IJOB {
   company: mongoose.Types.ObjectId;
   createdBy: mongoose.Types.ObjectId;
   applications: mongoose.Types.ObjectId[];
-}
+} */
 
 const jobSchema = new mongoose.Schema(
   {
