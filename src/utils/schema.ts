@@ -70,3 +70,9 @@ export const createJobSchema = z.object({
     return mongoose.Types.ObjectId.isValid(val);
   }),
 });
+
+export const applicationSchema = z.object({
+  jobId: z.string().refine((val) => {
+    return mongoose.Types.ObjectId.isValid(val);
+  }),
+});

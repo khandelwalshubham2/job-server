@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { applicationStatus } from "../utils/constants";
 
 export interface IApplication {}
 
@@ -16,7 +17,7 @@ const applicationSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "accepted", "rejected"],
+      enum: applicationStatus,
       default: "pending",
     },
   },
