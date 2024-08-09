@@ -1,13 +1,15 @@
 import mongoose from "mongoose";
 import { userRole } from "../utils/constants";
 
+export type Role = "student" | "recruiter";
+
 export interface IUser {
   firstName: string;
   lastName: string;
   email: string;
   phoneNumber: number;
   password: string;
-  role: "student" | "recruiter";
+  role: Role;
   profile: {
     bio: string;
     skills: string[];

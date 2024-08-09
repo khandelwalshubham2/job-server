@@ -1,7 +1,8 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import userRouter from "./routes/userRoutes";
+import userRouter from "./routes/userRoute";
+import companyRouter from "./routes/companyRoute";
 import globalErrorHandler from "./middleware/globalErrorHandler";
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(cors());
  */
 
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/companies", companyRouter);
 
 app.use(globalErrorHandler);
 

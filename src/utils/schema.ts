@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { userRole } from "./constants";
+import mongoose from "mongoose";
 
 export const userRegistrationSchema = z
   .object({
@@ -33,3 +34,39 @@ export const userRegistrationSchema = z
     }),
   })
   .strict();
+
+export const loginSchema = z
+  .object({
+    email: z
+      .string({
+        invalid_type_error: "Please Enter valid Email",
+        required_error: "Email is required",
+      })
+      .email("Please enter valid email"),
+    password: z
+      .string({
+        invalid_type_error: "Please Enter valid Password",
+        required_error: "Password is required",
+      })
+      .min(6, "Password must have 6 characters"),
+  })
+  .strict();
+
+const createCompanySchema = z.object({
+  name: z.string().min(1, "Please enter valid company name"),
+  location: z.string().min(1, "Please enter valid location"),
+});
+
+const createJobSchema = z.object({
+  title: z.string().min(1, "Please enter valid title"),
+  description: z.string().min(1, "Please enter valid description"),
+  requirements: z.array(z.string()).nonempty(),
+  salary: z.number().positive(),
+  location: z.string().min(1, "Please enter valid location"),
+  jobType: z.string().min(1, "Please enter valid job type"),
+  experience: z.number().nonnegative(),
+  position: z.string().min(1, "Please enter valid position"),
+  companyId: z.string().refine((val) => {
+    return mongoose.Types.ObjectId.isValid(val);
+  }),
+});
