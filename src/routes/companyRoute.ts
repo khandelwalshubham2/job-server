@@ -6,6 +6,8 @@ import {
   getCompanyById,
   registerCompany,
 } from "../controllers/companyController";
+import validateData from "../middleware/validation";
+import { createCompanySchema } from "../utils/schema";
 
 const router = express.Router();
 
@@ -19,7 +21,12 @@ router
 
 router
   .route("/")
-  .post(isAuthenticated, isAuthorised("recruiter"), registerCompany);
+  .post(
+    isAuthenticated,
+    isAuthorised("recruiter"),
+    validateData(createCompanySchema),
+    registerCompany
+  );
 
 router.route("/:id").get(isAuthenticated, getCompanyById);
 

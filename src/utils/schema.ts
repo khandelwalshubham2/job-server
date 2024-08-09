@@ -52,21 +52,21 @@ export const loginSchema = z
   })
   .strict();
 
-const createCompanySchema = z.object({
+export const createCompanySchema = z.object({
   name: z.string().min(1, "Please enter valid company name"),
   location: z.string().min(1, "Please enter valid location"),
 });
 
-const createJobSchema = z.object({
+export const createJobSchema = z.object({
   title: z.string().min(1, "Please enter valid title"),
   description: z.string().min(1, "Please enter valid description"),
   requirements: z.array(z.string()).nonempty(),
   salary: z.number().positive(),
   location: z.string().min(1, "Please enter valid location"),
   jobType: z.string().min(1, "Please enter valid job type"),
-  experience: z.number().nonnegative(),
+  experienceYears: z.number().nonnegative(),
   position: z.string().min(1, "Please enter valid position"),
-  companyId: z.string().refine((val) => {
+  company: z.string().refine((val) => {
     return mongoose.Types.ObjectId.isValid(val);
   }),
 });
