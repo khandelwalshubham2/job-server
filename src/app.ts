@@ -24,6 +24,8 @@ app.use(
   })
 );
 
+console.log(process.env.NODE_ENV);
+
 app.get("/health", async (req: Request, res: Response) => {
   res.send({ message: "health OK!" });
 });
