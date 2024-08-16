@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin:
-      envConfig.env === "development"
+      process.env.NODE_ENV === "development"
         ? localhostFrontendUrl
         : productionFrontEndUrl,
     credentials: true,
