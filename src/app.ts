@@ -14,22 +14,7 @@ const app = express();
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(
-  cors({
-    origin:
-      process.env.NODE_ENV === "development"
-        ? localhostFrontendUrl
-        : productionFrontEndUrl,
-    credentials: true,
-  })
-);
-
-console.log(process.env.NODE_ENV);
-console.log(
-  process.env.NODE_ENV === "development"
-    ? localhostFrontendUrl
-    : productionFrontEndUrl
-);
+app.use(cors());
 
 app.get("/health", async (req: Request, res: Response) => {
   res.send({ message: "health OK!" });

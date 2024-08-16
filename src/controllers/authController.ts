@@ -12,8 +12,12 @@ const sendToken = (user: any, statusCode: number, res: Response) => {
   user.password = undefined;
   res
     .status(statusCode)
-    .cookie("token", token)
-    .json({ success: true, user, message: "You are successfully login" });
+    .json({
+      success: true,
+      user,
+      token,
+      message: "You are successfully login",
+    });
 };
 
 const signup = catchAsync(

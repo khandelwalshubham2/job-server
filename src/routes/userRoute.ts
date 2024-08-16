@@ -11,7 +11,6 @@ const router = express.Router();
 
 router.route("/signup").post(validateData(userRegistrationSchema), signup);
 router.route("/login").post(validateData(loginSchema), login);
-router.route("/logout").post(isAuthenticated, logout);
 router
   .route("/update-me")
   .patch(isAuthenticated, isAuthorised("student"), singleUpload, updateUser);

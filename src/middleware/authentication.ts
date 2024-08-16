@@ -23,7 +23,7 @@ interface customJwtPayload extends JwtPayload {
 
 const isAuthenticated = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.cookies.token;
+    const token = req.header("authorization");
     if (!token) return next(createError(401, "Login First"));
     const decode = jwt.verify(
       token,
