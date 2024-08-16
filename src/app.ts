@@ -25,6 +25,11 @@ app.use(
 );
 
 console.log(process.env.NODE_ENV);
+console.log(
+  process.env.NODE_ENV === "development"
+    ? localhostFrontendUrl
+    : productionFrontEndUrl
+);
 
 app.get("/health", async (req: Request, res: Response) => {
   res.send({ message: "health OK!" });
